@@ -8,7 +8,14 @@ public class PlaceEdge extends Edge<Place> {
     }
 
     @Override
-    public void run() throws IllegalTransmissionLaunched {
+    public void run() throws IllegalTransmissionLaunchedException {
         getStartElement().takeTokens(this.getMultiplicity());
     }
+
+    public void check() throws IllegalTransmissionLaunchedException {
+        if(getStartElement().getTokens() < this.getMultiplicity())
+            throw new IllegalTransmissionLaunchedException("Tento prechod nieje mozne spustit");
+    }
+
+
 }

@@ -33,6 +33,7 @@ public abstract class BaseEdge<T extends BaseElement> {
         this.endElement = endElement;
     }
 
-    public abstract void run() throws IllegalTransmissionLaunched;
+    public abstract void run() throws IllegalTransmissionLaunchedException;
+
 
 }

@@ -10,19 +10,33 @@ public class Transmission extends BaseElement {
         super(id, name);
     }
 
-    private List<BaseEdge> edges = new ArrayList<BaseEdge>();
+    private List<PlaceEdge> placeEdges = new ArrayList<>();
+    private List<TransmissionEdge> transEdges = new ArrayList<>();
 
-    public void addTransmissionEdge (BaseEdge edge){
-        edges.add(edge);
+
+    public void addPlaceEdge (PlaceEdge edge){
+        placeEdges.add(edge);
     }
-    public void addPlaceEdge (BaseEdge edge){ edges.add(0,edge); }
+    public void addTransmissionEdge (TransmissionEdge edge){ transEdges.add(edge); }
 
-    public void run() throws IllegalTransmissionLaunched {
+    public void run() throws IllegalTransmissionLaunchedException {
+        checker();
+        for (PlaceEdge p : placeEdges) {
+            p.run();
+        }
 
-        for ( BaseEdge edge : edges) {
-            edge.run();
+        for (TransmissionEdge tr : transEdges) {
+            tr.run();
         }
     }
+
+
+    private void checker() throws IllegalTransmissionLaunchedException {
+        for (PlaceEdge p : placeEdges) {
+            p.check();
+        }
+    }
+
 
     @Override
     public int getTokens() {
@@ -35,7 +49,7 @@ public class Transmission extends BaseElement {
     }
 
     @Override
-    public void takeTokens(int count) throws IllegalTransmissionLaunched {
+    public void takeTokens(int count) throws IllegalTransmissionLaunchedException {
 
     }
 }

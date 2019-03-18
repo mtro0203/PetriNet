@@ -2,6 +2,14 @@ package petri.net;
 
 public abstract class BaseElement {
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private long id;
     private String name;
 
@@ -13,7 +21,8 @@ public abstract class BaseElement {
 
     public abstract int getTokens();
     public abstract void receiveTokens(int count);
-    public abstract void takeTokens(int count) throws IllegalTransmissionLaunched;
+    public abstract void takeTokens(int count) throws IllegalTransmissionLaunchedException;
+
 
 
 }

@@ -1,6 +1,6 @@
 package petri.net;
 
-public class IllegalTransmissionLaunched extends Exception {
+public class IllegalTransmissionLaunchedException extends Exception {
 
     private String errorMessage;
 
@@ -12,7 +12,7 @@ public class IllegalTransmissionLaunched extends Exception {
         this.errorMessage = errorMessage;
     }
 
-    public IllegalTransmissionLaunched(String errorMessage){
+    public IllegalTransmissionLaunchedException(String errorMessage){
         this.setErrorMessage(errorMessage);
     }
 

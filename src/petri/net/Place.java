@@ -26,9 +26,9 @@ public class Place extends BaseElement {
     }
 
     @Override
-    public void takeTokens(int count) throws IllegalTransmissionLaunched {
+    public void takeTokens(int count) throws IllegalTransmissionLaunchedException {
         if(this.getTokens() < count)
-            throw new IllegalTransmissionLaunched("Tento prechod nieje mozne spustit");
+            throw new IllegalTransmissionLaunchedException("Tento prechod nieje mozne spustit");
 
         setTokens(getTokens()-count);
     }
