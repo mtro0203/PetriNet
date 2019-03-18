@@ -12,6 +12,6 @@ public class ResetEdge extends BaseEdge<Place> {
 
         int tokens = getEndElement().getTokens();
 
-        getEndElement().takeTokens(tokens);
+        getStartElement().takeTokens(tokens);
     }
 }

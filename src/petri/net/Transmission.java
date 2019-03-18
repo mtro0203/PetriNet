@@ -10,30 +10,46 @@ public class Transmission extends BaseElement {
         super(id, name);
     }
 
-    private List<PlaceEdge> placeEdges = new ArrayList<>();
-    private List<TransmissionEdge> transEdges = new ArrayList<>();
+    private List<BaseEdge> edges = new ArrayList<>();
+    private int countOfPlaceEdges = 0;
 
+    private void incrementCountOfPlaceEdges() {
+        this.countOfPlaceEdges ++;
 
-    public void addPlaceEdge (PlaceEdge edge){
-        placeEdges.add(edge);
     }
-    public void addTransmissionEdge (TransmissionEdge edge){ transEdges.add(edge); }
+
+    public void addPlaceEdge (BaseEdge edge){
+        edges.add(0,edge);
+        incrementCountOfPlaceEdges();
+    }
+
+    public void addTransmissionEdge (BaseEdge edge){ edges.add(edge); }
+
+    public void addRessetEdge (BaseEdge edge){ edges.add(edge); }
+
 
     public void run() throws IllegalTransmissionLaunchedException {
-        checker();
-        for (PlaceEdge p : placeEdges) {
-            p.run();
-        }
 
-        for (TransmissionEdge tr : transEdges) {
-            tr.run();
+        checker();
+        for (BaseEdge edge: edges) {
+            edge.run();
         }
     }
 
-
     private void checker() throws IllegalTransmissionLaunchedException {
-        for (PlaceEdge p : placeEdges) {
-            p.check();
+
+        PlaceEdge placeEdge;
+        for (int i = 0; i<countOfPlaceEdges; i++) {
+
+            try {
+                placeEdge = (PlaceEdge)edges.get(i);
+                placeEdge.check();
+            }
+
+            catch (ClassCastException ex){
+                System.out.println(ex.getMessage());
+            }
+
         }
     }
 

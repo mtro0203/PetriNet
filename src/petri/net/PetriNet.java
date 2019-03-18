@@ -24,6 +24,9 @@ public class PetriNet {
         catch (ElementDoNotExistException ex){
             System.out.println(ex.getErrorMessage());
         }
+        catch (IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void createTransmissionsToPlaceEdge(long startTransmissionId, long endPlaceId, int multiplicity){
@@ -34,18 +37,32 @@ public class PetriNet {
         catch (ElementDoNotExistException ex) {
             System.out.println(ex.getErrorMessage());
         }
+        catch (IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
+    public void createRessetEdge(long startTransmissionId, long endPlaceId){
+        try {
+            Transmission transmission = findTransmission(startTransmissionId);
+            transmission.addRessetEdge(new ResetEdge(findPlace(endPlaceId),transmission));
+        }
+
+        catch (ElementDoNotExistException ex){
+            System.out.println(ex.getErrorMessage());
+        }
     }
 
 
     public void run (long id){
         try {
             findTransmission(id).run();
+        }
+        catch(IllegalTransmissionLaunchedException ex){
+            System.out.println(ex.getErrorMessage());
+            }
 
-        } catch (IllegalTransmissionLaunchedException ex) {
-          System.out.println(ex.getErrorMessage());
-
-        } catch (ElementDoNotExistException ex) {
+         catch (ElementDoNotExistException ex) {
             System.out.println(ex.getErrorMessage());
         }
     }
@@ -59,7 +76,7 @@ public class PetriNet {
                 return trans;
         }
 
-        throw new ElementDoNotExistException("Prechod s id" + id +"neexistuje");
+        throw new ElementDoNotExistException("Prechod s id " + id +" neexistuje");
     }
 
     private Place findPlace(long id) throws ElementDoNotExistException {
@@ -69,7 +86,7 @@ public class PetriNet {
                 return p;
         }
 
-        throw new ElementDoNotExistException("Miesto s id" + id +"neexistuje");
+        throw new ElementDoNotExistException("Miesto s id " + id +" neexistuje");
     }
 
 

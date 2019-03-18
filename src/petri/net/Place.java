@@ -9,6 +9,7 @@ public class Place extends BaseElement {
        setTokens(tokens);
     }
 
+    @Override
     public int getTokens() {
         return tokens;
     }
