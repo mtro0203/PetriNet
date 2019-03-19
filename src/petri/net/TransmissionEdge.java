@@ -1,24 +1,14 @@
 package petri.net;
 
-public class TransmissionEdge extends Edge<Transmission> {
+public class TransmissionEdge extends Edge<Transmission,Place> {
 
-    protected TransmissionEdge(Transmission startElement, BaseElement endElement, int multiplicity) {
+    protected TransmissionEdge(Transmission startElement, Place endElement, int multiplicity) {
         super(startElement, endElement, multiplicity);
     }
 
     @Override
     public void run() {
 
-        try {
-            Place place = (Place)getEndElement();
-            place.receiveTokens(this.getMultiplicity());
-        }
-
-        catch (ClassCastException ex){
-            System.out.println(ex.getMessage());
-        }
-
-
-
+        getEndElement().receiveTokens(this.getMultiplicity());
     }
 }

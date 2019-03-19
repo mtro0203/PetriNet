@@ -2,10 +2,10 @@ package petri.net;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
-public abstract class BaseEdge<T extends BaseElement> {
+public abstract class BaseEdge<T extends BaseElement , V extends BaseElement> {
 
 
-    protected BaseEdge(T startElement,BaseElement endElement) {
+    protected BaseEdge(T startElement,V endElement) {
 
         this.setStartElement(startElement);
         this.setEndElement(endElement);
@@ -19,13 +19,13 @@ public abstract class BaseEdge<T extends BaseElement> {
        this.startElement = startElement;
     }
 
-    private BaseElement endElement;
+    private V endElement;
 
-    public BaseElement getEndElement() {
+    public V getEndElement() {
         return endElement;
     }
 
-    public void setEndElement(BaseElement endElement) {
+    public void setEndElement(V endElement) {
 
         if (getStartElement().getClass() == endElement.getClass())
             throw new IllegalArgumentException("Hrana sa neda vytvorit medzi dvoma vyrcholmi rovnakeho typu");

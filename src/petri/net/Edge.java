@@ -1,6 +1,6 @@
 package petri.net;
 
-public abstract class Edge<T extends BaseElement> extends BaseEdge<T> {
+public abstract class Edge<T extends BaseElement, V extends BaseElement> extends BaseEdge<T,V> {
 
     private int multiplicity;
 
@@ -15,9 +15,8 @@ public abstract class Edge<T extends BaseElement> extends BaseEdge<T> {
         this.multiplicity = multiplicity;
     }
 
-    protected Edge(T startElement, BaseElement endElement, int multiplicity) {
+    protected Edge(T startElement, V endElement, int multiplicity) {
         super(startElement, endElement);
-
         this.setMultiplicity(multiplicity);
     }
 

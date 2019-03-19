@@ -86,7 +86,6 @@ public class PetriNet {
             if(p.getId() == id)
                 return p;
         }
-
         throw new ElementDoNotExistException("Miesto s id " + id +" neexistuje");
     }
 

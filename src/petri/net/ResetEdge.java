@@ -1,9 +1,9 @@
 package petri.net;
 
-public class ResetEdge extends BaseEdge<Place> {
+public class ResetEdge extends BaseEdge<Place,Transmission> {
 
 
-    protected ResetEdge(Place startElement, BaseElement endElement) {
+    protected ResetEdge(Place startElement, Transmission endElement) {
         super(startElement, endElement);
     }
 

@@ -38,13 +38,5 @@ public class Main {
 	net.createTransmissionsToPlaceEdge(5,6,1);
 	net.createTransmissionsToPlaceEdge(5,7,1);
 	net.run(5);
-
-
-
-
-
-
-
-
     }
 }

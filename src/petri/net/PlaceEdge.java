@@ -1,9 +1,9 @@
 package petri.net;
 
-public class PlaceEdge extends Edge<Place> {
+public class PlaceEdge extends Edge<Place,Transmission> {
 
 
-    protected PlaceEdge(Place startElement, BaseElement endElement, int multiplicity) {
+    protected PlaceEdge(Place startElement, Transmission endElement, int multiplicity) {
         super(startElement, endElement, multiplicity);
     }
 
