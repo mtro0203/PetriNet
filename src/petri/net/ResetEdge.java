@@ -10,8 +10,7 @@ public class ResetEdge extends BaseEdge<Place> {
     @Override
     public void run() throws IllegalTransmissionLaunchedException {
 
-        int tokens = getEndElement().getTokens();
-
+        int tokens = getStartElement().getTokens();
         getStartElement().takeTokens(tokens);
     }
 }

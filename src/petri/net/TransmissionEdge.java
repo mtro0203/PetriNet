@@ -8,6 +8,17 @@ public class TransmissionEdge extends Edge<Transmission> {
 
     @Override
     public void run() {
-         getEndElement().receiveTokens(this.getMultiplicity());
+
+        try {
+            Place place = (Place)getEndElement();
+            place.receiveTokens(this.getMultiplicity());
+        }
+
+        catch (ClassCastException ex){
+            System.out.println(ex.getMessage());
+        }
+
+
+
     }
 }

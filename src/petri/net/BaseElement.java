@@ -19,9 +19,7 @@ public abstract class BaseElement {
     }
 
 
-    public abstract int getTokens();
-    public abstract void receiveTokens(int count);
-    public abstract void takeTokens(int count) throws IllegalTransmissionLaunchedException;
+
 
 
 

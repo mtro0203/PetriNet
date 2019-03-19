@@ -9,8 +9,9 @@ public class PetriNet {
     private List<Place> places = new ArrayList<>();
 
     public void createTransmission(int id, String name){
-        transmissions.add(new Transmission(id, name));
-    }
+            transmissions.add(new Transmission(id, name));
+        }
+
 
     public void createPlace(long id, String name, int startTokens){
         places.add(new Place(id,name,startTokens));
@@ -45,7 +46,7 @@ public class PetriNet {
     public void createRessetEdge(long startTransmissionId, long endPlaceId){
         try {
             Transmission transmission = findTransmission(startTransmissionId);
-            transmission.addRessetEdge(new ResetEdge(findPlace(endPlaceId),transmission));
+            transmission.addResetEdge(new ResetEdge(findPlace(endPlaceId),transmission));
         }
 
         catch (ElementDoNotExistException ex){

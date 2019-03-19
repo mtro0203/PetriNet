@@ -12,8 +12,16 @@ public class IllegalTransmissionLaunchedException extends Exception {
         this.errorMessage = errorMessage;
     }
 
+    private void setErrorMessage(String errorMessage,long id) {
+        this.errorMessage = errorMessage + "  {Id " +id + " }";
+    }
+
     public IllegalTransmissionLaunchedException(String errorMessage){
         this.setErrorMessage(errorMessage);
+    }
+
+    public IllegalTransmissionLaunchedException(String errorMessage,long id){
+        this.setErrorMessage(errorMessage, id);
     }
 
 

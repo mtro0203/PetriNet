@@ -9,7 +9,7 @@ public class Place extends BaseElement {
        setTokens(tokens);
     }
 
-    @Override
+
     public int getTokens() {
         return tokens;
     }
@@ -21,12 +21,12 @@ public class Place extends BaseElement {
        this.tokens = tokens;
     }
 
-    @Override
+
     public void receiveTokens(int count) {
         setTokens(this.getTokens()+count);
     }
 
-    @Override
+
     public void takeTokens(int count) throws IllegalTransmissionLaunchedException {
         if(this.getTokens() < count)
             throw new IllegalTransmissionLaunchedException("Tento prechod nieje mozne spustit");

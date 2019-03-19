@@ -25,7 +25,7 @@ public class Transmission extends BaseElement {
 
     public void addTransmissionEdge (BaseEdge edge){ edges.add(edge); }
 
-    public void addRessetEdge (BaseEdge edge){ edges.add(edge); }
+    public void addResetEdge(BaseEdge edge){ edges.add(edge); }
 
 
     public void run() throws IllegalTransmissionLaunchedException {
@@ -37,7 +37,6 @@ public class Transmission extends BaseElement {
     }
 
     private void checker() throws IllegalTransmissionLaunchedException {
-
         PlaceEdge placeEdge;
         for (int i = 0; i<countOfPlaceEdges; i++) {
 
@@ -49,23 +48,6 @@ public class Transmission extends BaseElement {
             catch (ClassCastException ex){
                 System.out.println(ex.getMessage());
             }
-
         }
-    }
-
-
-    @Override
-    public int getTokens() {
-        return 0;
-    }
-
-    @Override
-    public void receiveTokens(int count) {
-
-    }
-
-    @Override
-    public void takeTokens(int count) throws IllegalTransmissionLaunchedException {
-
     }
 }
