@@ -15,7 +15,6 @@ public class Transmission extends BaseElement {
 
     private void incrementCountOfPlaceEdges() {
         this.countOfPlaceEdges ++;
-
     }
 
     public void addPlaceEdge (BaseEdge edge){
@@ -34,6 +33,7 @@ public class Transmission extends BaseElement {
         for (BaseEdge edge: edges) {
             edge.run();
         }
+
     }
 
     private void checker() throws IllegalTransmissionLaunchedException {

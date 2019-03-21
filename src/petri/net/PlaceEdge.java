@@ -16,6 +16,4 @@ public class PlaceEdge extends Edge<Place,Transmission> {
         if(getStartElement().getTokens() < this.getMultiplicity())
             throw new IllegalTransmissionLaunchedException("Tento prechod nieje mozne spustit",getEndElement().getId());
     }
-
-
 }

@@ -25,7 +25,7 @@ public abstract class BaseEdge<T extends BaseElement , V extends BaseElement> {
         return endElement;
     }
 
-    public void setEndElement(V endElement) {
+    public void setEndElement(V endElement)  {
 
         if (getStartElement().getClass() == endElement.getClass())
             throw new IllegalArgumentException("Hrana sa neda vytvorit medzi dvoma vyrcholmi rovnakeho typu");

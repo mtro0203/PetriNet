@@ -20,7 +20,4 @@ public abstract class Edge<T extends BaseElement, V extends BaseElement> extends
         this.setMultiplicity(multiplicity);
     }
 
-
-
-
 }

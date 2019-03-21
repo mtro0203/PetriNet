@@ -1,6 +1,7 @@
 package petri.net;
 
 public class ElementDoNotExistException extends Exception {
+
     private String errorMessage;
 
     public String getErrorMessage() {

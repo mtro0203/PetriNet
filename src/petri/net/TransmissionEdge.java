@@ -8,7 +8,6 @@ public class TransmissionEdge extends Edge<Transmission,Place> {
 
     @Override
     public void run() {
-
         getEndElement().receiveTokens(this.getMultiplicity());
     }
 }
