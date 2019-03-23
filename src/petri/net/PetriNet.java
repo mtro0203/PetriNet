@@ -5,35 +5,48 @@ import java.util.List;
 
 public class PetriNet {
 
-    private List<Transmission> transmissions = new ArrayList<>();
-    private List<Place> places = new ArrayList<>();
+    private List<BaseElement> elements = new ArrayList<>();
 
-    public void createTransmission(int id, String name){
-            transmissions.add(new Transmission(id, name));
+    public void createTransmission(int id, String name) {
+        try {
+            checkNames(id);
+            elements.add(new Transition(id, name));
+        } catch (DuplicateException ex) {
+            System.out.println(ex.getErrorMessage());
         }
-
-
-    public void createPlace(long id, String name, int startTokens){
-        places.add(new Place(id,name,startTokens));
     }
 
-    public void createPlaceToTransmissionEdge(long startPlaceId, long endTransmissionId,int multiplicity){
+    public void createPlace(long id, String name, int startTokens){
         try {
-            Transmission transmission = findTransmission(endTransmissionId);
-            transmission.addPlaceEdge(new PlaceEdge(findPlace(startPlaceId),transmission,multiplicity));
+            checkNames(id);
+            elements.add(new Place(id,name,startTokens));
+        } catch (DuplicateException ex) {
+            System.out.println(ex.getErrorMessage());
+        }
+
+    }
+
+    public void createPlaceToTransitionEdge(long startPlaceId, long endTransition,int multiplicity){
+        try {
+            Transition transition = getTransition(findElement(endTransition));
+            transition.addPlaceEdge(new PlaceEdge(getPlace (getPlace(findElement(startPlaceId))),transition,multiplicity));
         }
         catch (ElementDoNotExistException ex){
             System.out.println(ex.getErrorMessage());
         }
+
         catch (IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
+        catch (ClassCastException ex){
             System.out.println(ex.getMessage());
         }
     }
 
-    public void createTransmissionsToPlaceEdge(long startTransmissionId, long endPlaceId, int multiplicity){
+    public void createTransitionToPlaceEdge(long startTransitionId, long endPlaceId, int multiplicity){
         try {
-           Transmission transmission = findTransmission(startTransmissionId);
-            transmission.addTransmissionEdge(new TransmissionEdge(transmission,findPlace(endPlaceId),multiplicity));
+           Transition transition = getTransition(findElement(startTransitionId));
+            transition.addTransmissionEdge(new TransitionEdge(transition,getPlace (findElement(endPlaceId)),multiplicity));
         }
         catch (ElementDoNotExistException ex) {
             System.out.println(ex.getErrorMessage());
@@ -41,52 +54,75 @@ public class PetriNet {
         catch (IllegalArgumentException ex){
             System.out.println(ex.getMessage());
         }
+        catch (ClassCastException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public void createRessetEdge(long startTransmissionId, long endPlaceId){
+
+    public void createRessetEdge(long startPlaceId, long endTransitionId){
+
         try {
-            Transmission transmission = findTransmission(startTransmissionId);
-            transmission.addResetEdge(new ResetEdge(findPlace(endPlaceId),transmission));
+            Transition transition = getTransition(findElement(endTransitionId));
+            transition.addResetEdge(new ResetEdge(getPlace(findElement(startPlaceId)),transition));
         }
 
         catch (ElementDoNotExistException ex){
             System.out.println(ex.getErrorMessage());
+        }
+        catch (IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
+        catch (ClassCastException ex){
+            System.out.println(ex.getMessage());
         }
     }
 
 
     public void run (long id){
         try {
-            findTransmission(id).run();
+            getTransition(findElement(id)).run();
         }
-        catch(IllegalTransmissionLaunchedException ex){
+        catch(IllegalTransitionLaunchedException ex){
             System.out.println(ex.getErrorMessage());
             }
-
-         catch (ElementDoNotExistException ex) {
+        catch (ElementDoNotExistException ex) {
             System.out.println(ex.getErrorMessage());
         }
+        catch (ClassCastException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private void checkNames(long id) throws DuplicateException {
+
+        try {
+           findElement(id);
+           throw new DuplicateException("Objekt s id " +id +" nazvom uz existuje");
+        }
+        catch (ElementDoNotExistException ex) {
+
+        }
+    }
+
+    private BaseElement findElement(long id) throws ElementDoNotExistException {
+        for (BaseElement element: elements) {
+            if(element.getId() == id)
+                return element;
+        }
+        throw new ElementDoNotExistException("Objekt s id " + id + "neexistuje");
     }
 
 
-    private Transmission findTransmission(long id) throws ElementDoNotExistException {
+    private Transition getTransition(BaseElement baseElement) throws ClassCastException  {
+            return (Transition) baseElement;
 
-        for (Transmission trans: transmissions) {
-
-            if(trans.getId() == id)
-                return trans;
-        }
-
-        throw new ElementDoNotExistException("Prechod s id " + id +" neexistuje");
     }
 
-    private Place findPlace(long id) throws ElementDoNotExistException {
-        for (Place p: places) {
 
-            if(p.getId() == id)
-                return p;
-        }
-        throw new ElementDoNotExistException("Miesto s id " + id +" neexistuje");
+    private Place getPlace (BaseElement baseElement)throws ClassCastException {
+            return (Place) baseElement;
+
     }
 
 

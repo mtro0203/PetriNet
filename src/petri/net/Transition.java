@@ -3,12 +3,14 @@ package petri.net;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transmission extends BaseElement {
+public class Transition extends BaseElement {
 
 
-    protected Transmission(long id, String name) {
+
+    protected Transition(long id, String name) {
         super(id, name);
     }
+
 
     private List<BaseEdge> edges = new ArrayList<>();
     private int countOfPlaceEdges = 0;
@@ -27,16 +29,15 @@ public class Transmission extends BaseElement {
     public void addResetEdge(BaseEdge edge){ edges.add(edge); }
 
 
-    public void run() throws IllegalTransmissionLaunchedException {
+    public void run() throws IllegalTransitionLaunchedException {
 
         checker();
         for (BaseEdge edge: edges) {
             edge.run();
         }
-
     }
 
-    private void checker() throws IllegalTransmissionLaunchedException {
+    private void checker() throws IllegalTransitionLaunchedException {
         PlaceEdge placeEdge;
         for (int i = 0; i<countOfPlaceEdges; i++) {
 
@@ -50,4 +51,5 @@ public class Transmission extends BaseElement {
             }
         }
     }
+
 }

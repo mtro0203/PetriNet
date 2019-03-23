@@ -16,6 +16,8 @@ public abstract class BaseEdge<T extends BaseElement , V extends BaseElement> {
     public T getStartElement() { return startElement; }
 
     public void setStartElement(T startElement) {
+        if(startElement == null)
+            throw new IllegalArgumentException("Zaciatok hrany nemoze byt null");
        this.startElement = startElement;
     }
 
@@ -27,13 +29,16 @@ public abstract class BaseEdge<T extends BaseElement , V extends BaseElement> {
 
     public void setEndElement(V endElement)  {
 
+        if(endElement == null)
+            throw new IllegalArgumentException("Koniec hrany nemoze byt null");
+
         if (getStartElement().getClass() == endElement.getClass())
             throw new IllegalArgumentException("Hrana sa neda vytvorit medzi dvoma vyrcholmi rovnakeho typu");
 
         this.endElement = endElement;
     }
 
-    public abstract void run() throws IllegalTransmissionLaunchedException;
+    public abstract void run() throws IllegalTransitionLaunchedException;
 
 
 }

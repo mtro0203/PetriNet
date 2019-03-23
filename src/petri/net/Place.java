@@ -27,10 +27,14 @@ public class Place extends BaseElement {
     }
 
 
-    public void takeTokens(int count) throws IllegalTransmissionLaunchedException {
+    public void takeTokens(int count) throws IllegalTransitionLaunchedException {
         if(this.getTokens() < count)
-            throw new IllegalTransmissionLaunchedException("Tento prechod nieje mozne spustit");
+            throw new IllegalTransitionLaunchedException("Tento prechod nieje mozne spustit");
 
         setTokens(getTokens()-count);
+    }
+
+    public String getInfo(){
+        return "Miesto s id " + getId() + " ma " + getTokens() + " tokenov";
     }
 }
