@@ -4,7 +4,6 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 
 public abstract class BaseEdge<T extends BaseElement , V extends BaseElement> {
 
-
     protected BaseEdge(T startElement,V endElement) {
 
         this.setStartElement(startElement);

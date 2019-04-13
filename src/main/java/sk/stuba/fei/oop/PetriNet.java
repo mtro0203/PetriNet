@@ -7,7 +7,8 @@ public class PetriNet {
 
     private List<BaseElement> elements = new ArrayList<>();
 
-    public void createTransmission(int id, String name) {
+
+    public void createTransition(int id, String name) {
         try {
             checkNames(id);
             elements.add(new Transition(id, name));
@@ -23,7 +24,6 @@ public class PetriNet {
         } catch (DuplicateException ex) {
             System.out.println(ex.getErrorMessage());
         }
-
     }
 
     public void createPlaceToTransitionEdge(long startPlaceId, long endTransition,int multiplicity){
@@ -39,7 +39,7 @@ public class PetriNet {
             System.out.println(ex.getMessage());
         }
         catch (ClassCastException ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Nespravne zadany zaciatok a koniec hrany");
         }
     }
 
@@ -55,7 +55,7 @@ public class PetriNet {
             System.out.println(ex.getMessage());
         }
         catch (ClassCastException ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Nespravne zadany zaciatok a koniec hrany");
         }
     }
 
@@ -90,7 +90,7 @@ public class PetriNet {
             System.out.println(ex.getErrorMessage());
         }
         catch (ClassCastException ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Je mozne spustat len prechod");
         }
     }
 
@@ -98,7 +98,7 @@ public class PetriNet {
 
         try {
            findElement(id);
-           throw new DuplicateException("Objekt s id " +id +" nazvom uz existuje");
+           throw new DuplicateException("Objekt s id " +id + " nazvom uz existuje");
         }
         catch (ElementDoNotExistException ex) {
 
@@ -110,20 +110,22 @@ public class PetriNet {
             if(element.getId() == id)
                 return element;
         }
-        throw new ElementDoNotExistException("Objekt s id " + id + "neexistuje");
+        throw new ElementDoNotExistException("Objekt s id " + id + " neexistuje");
     }
 
 
-    private Transition getTransition(BaseElement baseElement) throws ClassCastException  {
-            return (Transition) baseElement;
 
+    private Transition getTransition(BaseElement baseElement) throws ClassCastException  {
+            return (Transition)baseElement;
     }
 
 
     private Place getPlace (BaseElement baseElement)throws ClassCastException {
             return (Place) baseElement;
-
     }
+
+
+
 
 
 

@@ -12,6 +12,7 @@ public abstract class Edge<T extends BaseElement, V extends BaseElement> extends
 
         if (multiplicity < 1)
             throw new IllegalArgumentException("Hrana nesmie mat nasobnost menisiu ako 1");
+
         this.multiplicity = multiplicity;
     }
 
