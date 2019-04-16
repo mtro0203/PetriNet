@@ -6,7 +6,14 @@ import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
 
 public abstract class BaseEdge<T extends BaseElement, V extends BaseElement> {
 
-    protected BaseEdge(T startElement,V endElement) {
+    public long getId() {
+        return id;
+    }
+
+    private long id;
+
+    protected BaseEdge(T startElement, V endElement, long id) {
+        this.id = id;
 
         this.setStartElement(startElement);
         this.setEndElement(endElement);

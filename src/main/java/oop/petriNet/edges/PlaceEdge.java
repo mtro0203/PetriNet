@@ -9,8 +9,8 @@ import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
 public class PlaceEdge extends Edge<Place, Transition> {
 
 
-    public  PlaceEdge(Place startElement, Transition endElement, int multiplicity) {
-        super(startElement, endElement, multiplicity);
+    public  PlaceEdge(Place startElement, Transition endElement, int multiplicity,long id) {
+        super(startElement, endElement, multiplicity,id);
     }
 
     @Override

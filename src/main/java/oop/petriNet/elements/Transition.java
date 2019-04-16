@@ -19,6 +19,10 @@ public class Transition extends BaseElement {
         super(id, name, x, y);
     }
 
+    public List<BaseEdge> getEdges() {
+        return edges;
+    }
+
     private List<BaseEdge> edges = new ArrayList<BaseEdge>();
     private int countOfPlaceEdges = 0;
 
@@ -39,7 +43,7 @@ public class Transition extends BaseElement {
     public void run() throws IllegalTransitionLaunchedException {
 
         checker();
-        System.out.println("Prechod s " + getId() + " spusteny");
+        System.out.println("Prechod s id " + getId() + " spusteny");
         for (BaseEdge edge: edges) {
             edge.run();
         }

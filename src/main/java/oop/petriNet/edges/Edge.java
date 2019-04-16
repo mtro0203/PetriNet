@@ -19,8 +19,8 @@ public abstract class Edge<T extends BaseElement, V extends BaseElement> extends
         this.multiplicity = multiplicity;
     }
 
-    protected Edge(T startElement, V endElement, int multiplicity) {
-        super(startElement, endElement);
+    protected Edge(T startElement, V endElement, int multiplicity,long id) {
+        super(startElement, endElement, id);
         this.setMultiplicity(multiplicity);
     }
 

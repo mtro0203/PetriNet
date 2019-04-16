@@ -67,10 +67,10 @@ public class Transform {
 
         for (Arc edge : edges){
             if (edge.getType() == ArcType.RESET){
-                net.createRessetEdge(edge.getSourceId(),edge.getDestinationId());
+                net.createRessetEdge(edge.getSourceId(),edge.getDestinationId(),edge.getId());
             }
             else{
-                net.createEdge(edge.getSourceId(),edge.getDestinationId(),edge.getMultiplicity());
+                net.createEdge(edge.getSourceId(),edge.getDestinationId(),edge.getMultiplicity(),edge.getId());
             }
         }
         return net;

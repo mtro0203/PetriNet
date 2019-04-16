@@ -6,8 +6,8 @@ import oop.petriNet.elements.Transition;
 
 public class TransitionEdge extends Edge<Transition, Place> {
 
-    public TransitionEdge(Transition startElement, Place endElement, int multiplicity) {
-        super(startElement, endElement, multiplicity);
+    public TransitionEdge(Transition startElement, Place endElement, int multiplicity,long id) {
+        super(startElement, endElement, multiplicity,id);
     }
 
     @Override

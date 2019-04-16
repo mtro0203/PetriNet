@@ -8,8 +8,8 @@ import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
 public class ResetEdge extends BaseEdge<Place, Transition> {
 
 
-    public ResetEdge(Place startElement, Transition endElement) {
-        super(startElement, endElement);
+    public ResetEdge(Place startElement, Transition endElement,long id) {
+        super(startElement, endElement, id);
     }
 
     @Override

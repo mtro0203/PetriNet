@@ -30,18 +30,12 @@ public class ApplicationFrame extends Frame implements ActionListener {
 
         setSize(700,400);
 
-
         Panel ButtonPanel = new Panel();
-
         Button impo = new Button("Import");
-
         impo.addActionListener(this);
-
-
         ButtonPanel.add(impo);
 
         canvas = new ApplicationCanvas();
-
 
         setBackground(new Color(255, 255, 255));
         setLayout(new BorderLayout());
@@ -49,24 +43,23 @@ public class ApplicationFrame extends Frame implements ActionListener {
         add(ButtonPanel,BorderLayout.NORTH);
         setVisible(true);
 
-
-
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getActionCommand() == "Import"){
+        if(e.getActionCommand().equals("Import")){
 
-            net = importNet(canvas);
+            net = importNet();
             net.createGraphics(canvas);
             canvas.repaint();
         }
     }
 
-    private PetriNet importNet(Canvas canvas){
+    private PetriNet importNet(){
         FileChooser fc = new FileChooser(canvas);
         Transform tr = new Transform(fc.getPathToSelectedFile());
         try {
+            canvas.clear();
             return tr.xml2PetriNet();
         }
         catch (UnableCreatePetriNetException e) {

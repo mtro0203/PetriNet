@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oop.graphics.Interface.NetCanvas;
+import oop.petriNet.edges.BaseEdge;
 import oop.petriNet.edges.PlaceEdge;
 import oop.petriNet.edges.ResetEdge;
 import oop.petriNet.edges.TransitionEdge;
@@ -57,10 +58,10 @@ public class PetriNet {
         }
     }
 
-    public void createPlaceToTransitionEdge(long startPlaceId, long endTransition,int multiplicity){
+    public void createPlaceToTransitionEdge(long startPlaceId, long endTransition,int multiplicity,long id){
         try {
             Transition transition = getTransition(findElement(endTransition));
-            transition.addPlaceEdge(new PlaceEdge(getPlace (getPlace(findElement(startPlaceId))),transition,multiplicity));
+            transition.addPlaceEdge(new PlaceEdge(getPlace (getPlace(findElement(startPlaceId))),transition,multiplicity,id));
         }
         catch (ElementDoNotExistException ex){
             System.out.println(ex.getErrorMessage());
@@ -74,10 +75,10 @@ public class PetriNet {
         }
     }
 
-    public void createTransitionToPlaceEdge(long startTransitionId, long endPlaceId, int multiplicity){
+    public void createTransitionToPlaceEdge(long startTransitionId, long endPlaceId, int multiplicity,long id){
         try {
            Transition transition = getTransition(findElement(startTransitionId));
-            transition.addTransmissionEdge(new TransitionEdge(transition,getPlace (findElement(endPlaceId)),multiplicity));
+            transition.addTransmissionEdge(new TransitionEdge(transition,getPlace (findElement(endPlaceId)),multiplicity,id));
         }
         catch (ElementDoNotExistException ex) {
             System.out.println(ex.getErrorMessage());
@@ -90,24 +91,24 @@ public class PetriNet {
         }
     }
 
-    public void createEdge(long startId, long endId, int multiplicity){
+    public void createEdge(long startId, long endId, int multiplicity,long id){
         try {
             getPlace(findElement(startId));
-            createPlaceToTransitionEdge(startId,endId,multiplicity);
+            createPlaceToTransitionEdge(startId,endId,multiplicity,id);
         }
         catch (ClassCastException e){
-            createTransitionToPlaceEdge(startId,endId,multiplicity);
+            createTransitionToPlaceEdge(startId,endId,multiplicity,id);
         }
        catch (ElementDoNotExistException e) {
            System.out.println(e.getErrorMessage());
         }
     }
 
-    public void createRessetEdge(long startPlaceId, long endTransitionId){
+    public void createRessetEdge(long startPlaceId, long endTransitionId,long id){
 
         try {
             Transition transition = getTransition(findElement(endTransitionId));
-            transition.addResetEdge(new ResetEdge(getPlace(findElement(startPlaceId)),transition));
+            transition.addResetEdge(new ResetEdge(getPlace(findElement(startPlaceId)),transition,id));
         }
 
         catch (ElementDoNotExistException ex){
@@ -170,18 +171,27 @@ public class PetriNet {
 
     public void createGraphics(NetCanvas canvas){
 
-        try {
-            checkCoordinates();
-            for (BaseElement element :elements) {
-                canvas.addElement(element);
+        for (BaseElement element :elements) {
+
+            try {
+                checkCoordinates();
+                {
+                    canvas.addGraphicsElement(element);
+
+                    Transition tr = getTransition(element);
+                    List<BaseEdge> edges = tr.getEdges();
+                    for (BaseEdge edge : edges) {
+                        canvas.addGraphicsEdge(edge);
+                    }
+                }
+
+            } catch (GraphicsExeption e) {
+                System.out.println(e.getErrorMessage());
+            } catch (ClassCastException ex) {
+
             }
 
         }
-        catch (GraphicsExeption e) {
-            System.out.println(e.getErrorMessage());
-        }
-
-
     }
 
 

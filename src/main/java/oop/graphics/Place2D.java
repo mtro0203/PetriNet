@@ -18,15 +18,19 @@ public class Place2D extends Ellipse2D.Float implements Element {
     }
 
     public void draw(Graphics2D graphics2D){
+        graphics2D.setPaint(Color.BLACK);
         graphics2D.draw(this);
+        graphics2D.drawString(""+place.getTokens(),(int) getCenterX(),(int)getCenterY());
+        graphics2D.drawString(place.getName(),(int) getCenterX(),(int)getCenterY()+35);
     }
 
-    public long getId(){return place.getId();}
 
+    public long getId() {
+       return place.getId();
 
+    }
 
+    public void onClick(float x, float y) {
 
-
-
-
+    }
 }
