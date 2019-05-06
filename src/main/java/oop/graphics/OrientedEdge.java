@@ -3,6 +3,7 @@ package oop.graphics;
 
 import oop.graphics.Interface.Element;
 import oop.petriNet.edges.BaseEdge;
+import oop.petriNet.edges.Edge;
 
 import java.awt.*;
 
@@ -11,7 +12,7 @@ public class OrientedEdge extends Arrow implements Element {
     private BaseEdge edge;
 
     public OrientedEdge(BaseEdge edge) {
-        super((int) edge.getStartElement().getX()+40,(int)edge.getStartElement().getY()+20,(int)edge.getEndElement().getX()+20,(int)edge.getEndElement().getY()+25);
+        super((int) edge.getStartElement().getX(),(int)edge.getStartElement().getY(),(int)edge.getEndElement().getX(),(int)edge.getEndElement().getY());
         this.edge = edge;
     }
 
@@ -19,6 +20,17 @@ public class OrientedEdge extends Arrow implements Element {
     public void draw(Graphics2D graphics2D) {
         graphics2D.setPaint(Color.BLACK);
         drawArrow(graphics2D);
+        graphics2D.drawString(getMultiplicity(),getCenterX(),getCenterY());
+    }
+
+    private String getMultiplicity() {
+        try {
+            Edge edge1 = (Edge)edge;
+            return ""+edge1.getMultiplicity();
+        }
+        catch (ClassCastException ex){
+            return "Resset";
+        }
     }
 
     public long getId() {

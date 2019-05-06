@@ -49,9 +49,15 @@ public class ApplicationFrame extends Frame implements ActionListener {
 
         if(e.getActionCommand().equals("Import")){
 
-            net = importNet();
-            net.createGraphics(canvas);
-            canvas.repaint();
+            try {
+                net = importNet();
+                net.createGraphics(canvas);
+                canvas.repaint();
+            }
+           catch (NullPointerException ex){
+
+           }
+
         }
     }
 

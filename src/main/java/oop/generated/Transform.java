@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.rmi.UnmarshalException;
 import java.util.List;
 
 import oop.generated.Exceptions.UnableCreatePetriNetException;
@@ -30,11 +31,13 @@ public class Transform {
            return createNet(getXmlDocument(path));
         }
         catch (JAXBException e) {
-            e.printStackTrace();
+            System.out.println("Nebolo mozne importovat vybrany dokument");
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Subor nenajdeny");
         }
+
+
 
         throw new UnableCreatePetriNetException("Nebolo mozne vytvorit Petri siet");
     }

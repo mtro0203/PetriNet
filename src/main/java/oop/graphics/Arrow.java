@@ -14,11 +14,54 @@ public class Arrow  {
 
 
     public Arrow(int x1, int y1, int x2, int y2) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
+        this.x1 = x1+20;
+        this.y1 = y1+20;
+        this.x2 = x2+20;
+        this.y2 = y2+20;
+
+        setPoints();
+
     }
+
+    public int getCenterX(){
+        return (x1+x2)/2;
+    }
+
+    public int getCenterY(){
+        return (y1+y2)/2;
+    }
+
+    private void setPoints(){
+        double dx = x2 - x1, dy = y2 - y1;
+
+        double angle = Math.atan2(dy, dx);
+        double degrees =  Math.toDegrees(angle);
+
+        if(degrees < 0.0){
+            degrees += 360;
+        }
+
+        if(degrees>=45 && degrees <135){
+            moveY(20);
+        }
+
+        else if(degrees>=135 && degrees <225){
+            moveX(-20);
+        }
+
+        else if(degrees>=225 && degrees <315){
+            moveY(-20);
+        }
+
+        else if(degrees>=315 || degrees <=45){
+            moveX(20);
+        }
+
+
+    }
+
+    void moveX(int n){this.x1 +=n;}
+    void moveY(int n){this.y1 +=n;}
 
 
     void drawArrow(Graphics g1) {
