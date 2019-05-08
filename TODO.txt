@@ -1,0 +1,8 @@
+vytvorenie metody v PetriNet na mazanie elementov+ btn, listner,mod
+
+vytvorenie generatora unikatnych ideciek, pridat ho k vytvaraniu miest, prechodov, hran (mod, listener na hrany zatial neexistuju)
+
+pridavanie tokenov odoberanie tokenov
+
+
+export do xml

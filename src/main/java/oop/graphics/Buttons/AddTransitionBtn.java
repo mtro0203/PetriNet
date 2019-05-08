@@ -1,4 +1,10 @@
 package oop.graphics.Buttons;
 
-public class AddTransitionBtn {
+import java.awt.*;
+
+public class AddTransitionBtn extends Button {
+
+    public AddTransitionBtn(String label) throws HeadlessException {
+        super(label);
+    }
 }

@@ -11,7 +11,7 @@ public class FileChooser {
     private String path;
 
 
-    public FileChooser(Canvas canvas){
+    public FileChooser(){
         JButton confirm = new JButton();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(false);

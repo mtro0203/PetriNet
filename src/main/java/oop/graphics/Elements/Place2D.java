@@ -1,4 +1,4 @@
-package oop.graphics;
+package oop.graphics.Elements;
 
 
 import oop.graphics.Interface.Drawable;
@@ -27,6 +27,10 @@ public class Place2D extends Ellipse2D.Float implements Element {
 
     public long getId() {
        return place.getId();
+
+    }
+
+    public void onRun() {
 
     }
 

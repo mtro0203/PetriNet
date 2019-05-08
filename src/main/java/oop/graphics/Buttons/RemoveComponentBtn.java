@@ -1,4 +1,6 @@
 package oop.graphics.Buttons;
 
-public class RemoveComponentBtn {
+import java.awt.*;
+
+public class RemoveComponentBtn extends Button {
 }

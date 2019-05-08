@@ -1,6 +1,6 @@
 package oop;
 
-import oop.graphics.ApplicationFrame;
+import oop.graphics.Elements.ApplicationFrame;
 
 public class Main {
 

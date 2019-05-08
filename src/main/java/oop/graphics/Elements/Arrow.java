@@ -1,9 +1,10 @@
-package oop.graphics;
+package oop.graphics.Elements;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
 import java.lang.Object;
-public class Arrow  {
+public class Arrow extends Line2D.Float {
 
     private final int ARR_SIZE = 6;
 

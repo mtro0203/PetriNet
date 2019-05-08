@@ -1,4 +1,4 @@
-package oop.graphics;
+package oop.graphics.Elements;
 
 
 import oop.graphics.Interface.Element;
@@ -35,6 +35,10 @@ public class OrientedEdge extends Arrow implements Element {
 
     public long getId() {
         return edge.getId();
+    }
+
+    public void onRun() {
+
     }
 
     public void onClick(float x, float y) {

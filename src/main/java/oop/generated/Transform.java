@@ -13,20 +13,21 @@ import java.rmi.UnmarshalException;
 import java.util.List;
 
 import oop.generated.Exceptions.UnableCreatePetriNetException;
+import oop.petriNet.Interface.Net;
 import oop.petriNet.PetriNet;
 
 public class Transform {
 
     private String path;
-    private PetriNet net;
+    private Net net;
 
-    public Transform(String path) {
+    public Transform(String path, Net net) {
         this.path = path;
-        net = new PetriNet();
+        this.net = net;
     }
 
 
-    public PetriNet xml2PetriNet() throws UnableCreatePetriNetException {
+    public Net xml2PetriNet() throws UnableCreatePetriNetException {
         try {
            return createNet(getXmlDocument(path));
         }
@@ -42,7 +43,6 @@ public class Transform {
         throw new UnableCreatePetriNetException("Nebolo mozne vytvorit Petri siet");
     }
 
-    public PetriNet getNet(){return  net;}
 
     private Document getXmlDocument(String path) throws JAXBException, FileNotFoundException {
 
@@ -53,7 +53,7 @@ public class Transform {
     }
 
 
-    private PetriNet createNet(Document document) {
+    private Net createNet(Document document) {
 
         List<Place> places = document.getPlace();
         List<Transition> transitions = document.getTransition();

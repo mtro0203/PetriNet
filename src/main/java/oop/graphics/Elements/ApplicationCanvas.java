@@ -1,6 +1,5 @@
-package oop.graphics;
+package oop.graphics.Elements;
 
-import oop.generated.FileChooser;
 import oop.graphics.Interface.Drawable;
 import oop.graphics.Interface.Element;
 import oop.graphics.Interface.NetCanvas;
@@ -13,14 +12,17 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApplicationCanvas extends Canvas implements NetCanvas, MouseListener {
+public class ApplicationCanvas extends Canvas implements NetCanvas {
+
+    public List<Element> getElements() {
+        return elements;
+    }
 
     private List<Element> elements;
 
 
     public ApplicationCanvas(){
         elements = new ArrayList<Element>();
-        addMouseListener(this);
     }
 
     @Override
@@ -46,6 +48,16 @@ public class ApplicationCanvas extends Canvas implements NetCanvas, MouseListene
         elements.add(new Place2D(place));
     }
 
+    public void _addMouseListener(MouseListener listener){
+        this.addMouseListener(listener);
+    }
+
+    public void _deleteMouseListener(){
+        for(MouseListener listener : getMouseListeners()){
+            this.removeMouseListener(listener);
+        }
+
+    }
     private void addGraphicsTransition(BaseElement element){
         Transition transition = (Transition)element;
         elements.add(new Transition2D(transition));
@@ -55,30 +67,14 @@ public class ApplicationCanvas extends Canvas implements NetCanvas, MouseListene
         elements.add(new OrientedEdge(edge));
     }
 
+
+
     public void clear(){
         elements.clear();
     }
 
     public void mouseClicked(MouseEvent e) {
-        for (Element el :elements) {
-            el.onClick(e.getX(),e.getY());
-        }
-        repaint();
-    }
-
-    public void mousePressed(MouseEvent e) {
 
     }
 
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    public void mouseExited(MouseEvent e) {
-
-    }
 }

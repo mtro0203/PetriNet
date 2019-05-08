@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oop.graphics.Interface.NetCanvas;
+import oop.petriNet.Interface.Net;
 import oop.petriNet.edges.BaseEdge;
 import oop.petriNet.edges.PlaceEdge;
 import oop.petriNet.edges.ResetEdge;
@@ -17,7 +18,9 @@ import oop.petriNet.exceptions.GraphicsExeption;
 import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
 
 
-public class PetriNet {
+//TODO spravit funckiu na vymazanie elementu podla ?? (id), pridat ju do interfacu
+
+public class PetriNet implements Net {
 
     private List<BaseElement> elements = new ArrayList<BaseElement>();
 
@@ -171,6 +174,7 @@ public class PetriNet {
 
     public void createGraphics(NetCanvas canvas){
 
+        canvas.clear();
         for (BaseElement element :elements) {
 
             try {
@@ -192,6 +196,7 @@ public class PetriNet {
             }
 
         }
+        canvas.repaint();
     }
 
 
@@ -203,6 +208,9 @@ public class PetriNet {
         }
     }
 
+    public void clearNet(){
+        elements.clear();
+    }
 
 
 
