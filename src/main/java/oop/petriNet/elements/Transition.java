@@ -5,6 +5,7 @@ import java.util.List;
 
 import oop.petriNet.edges.BaseEdge;
 import oop.petriNet.edges.PlaceEdge;
+import oop.petriNet.exceptions.DuplicateException;
 import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
 
 public class Transition extends BaseElement {
@@ -26,18 +27,57 @@ public class Transition extends BaseElement {
     private List<BaseEdge> edges = new ArrayList<BaseEdge>();
     private int countOfPlaceEdges = 0;
 
+    public BaseEdge getEdge(long id)  {
+        for (BaseEdge edge :edges) {
+            if(edge.getId() == id)
+                return edge;
+        }
+        return null;
+    }
+
     private void incrementCountOfPlaceEdges() {
         this.countOfPlaceEdges ++;
     }
 
     public void addPlaceEdge (BaseEdge edge){
-        edges.add(0,edge);
-        incrementCountOfPlaceEdges();
+        try {
+            edgeAlreadyExist(edge.getStartElement().getId(),edge.getEndElement().getId());
+            edges.add(0,edge);
+            incrementCountOfPlaceEdges();
+        }
+
+        catch (DuplicateException ex){
+            System.out.println(ex.getErrorMessage());
+        }
+
     }
 
-    public void addTransmissionEdge (BaseEdge edge){ edges.add(edge); }
+    public void addTransmissionEdge (BaseEdge edge){
+        try {
+            edgeAlreadyExist(edge.getStartElement().getId(),edge.getEndElement().getId());
+            edges.add(edge);
+        } catch (DuplicateException ex) {
+            System.out.println(ex.getErrorMessage());
+        }
 
-    public void addResetEdge(BaseEdge edge){ edges.add(edge); }
+    }
+
+    public void addResetEdge(BaseEdge edge){
+        try {
+            edgeAlreadyExist(edge.getStartElement().getId(),edge.getEndElement().getId());
+            edges.add(edge);
+        } catch (DuplicateException ex) {
+            System.out.println(ex.getErrorMessage());
+        }
+
+    }
+
+    public void edgeAlreadyExist(long start, long end) throws DuplicateException {
+        for (BaseEdge edge: edges) {
+            if(edge.getStartElement().getId() == start && edge.getEndElement().getId() == end)
+                throw new DuplicateException("Hrana uz exsituje");
+        }
+    }
 
 
     public void run() throws IllegalTransitionLaunchedException {

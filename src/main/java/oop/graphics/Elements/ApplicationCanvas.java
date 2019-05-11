@@ -7,7 +7,6 @@ import oop.petriNet.edges.BaseEdge;
 import oop.petriNet.elements.*;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +70,6 @@ public class ApplicationCanvas extends Canvas implements NetCanvas {
 
     public void clear(){
         elements.clear();
-    }
-
-    public void mouseClicked(MouseEvent e) {
-
     }
 
 }

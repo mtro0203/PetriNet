@@ -1,13 +1,7 @@
 package oop.graphics.Elements;
 
-import oop.graphics.ButtonListeners.RunListener;
-import oop.graphics.Buttons.AddPlaceBtn;
-import oop.graphics.Buttons.AddTransitionBtn;
-import oop.graphics.Buttons.ImportBtn;
-import oop.graphics.ButtonListeners.AddPlaceListener;
-import oop.graphics.ButtonListeners.AddTransitionListener;
-import oop.graphics.ButtonListeners.ImportListener;
-import oop.graphics.Buttons.RunBtn;
+import oop.graphics.ButtonListeners.*;
+import oop.graphics.Buttons.*;
 import oop.petriNet.PetriNet;
 
 
@@ -38,17 +32,26 @@ public class ApplicationFrame extends Frame {
         ImportBtn importBtn = new ImportBtn("Import");
         AddPlaceBtn addPlaceBtn = new AddPlaceBtn("Add Place");
         AddTransitionBtn addTransitionBtn = new AddTransitionBtn("Add Transition");
+        AddEdgeBtn addEdgeBtn = new AddEdgeBtn("Add edge");
+        TokenBtn tokenBtn = new TokenBtn("Tokens");
+        DeleteButton deleteButton = new DeleteButton("Delete");
         RunBtn runBtn = new RunBtn("Run");
 
 
         importBtn.addActionListener(new ImportListener(canvas,net));
         addPlaceBtn.addActionListener(new AddPlaceListener(canvas,net));
         addTransitionBtn.addActionListener(new AddTransitionListener(canvas,net));
+        addEdgeBtn.addActionListener(new AddEdgeListener(canvas,net));
+        tokenBtn.addActionListener(new ChangeTokenListener(canvas,net));
+        deleteButton.addActionListener(new DeleteListener(canvas,net));
         runBtn.addActionListener(new RunListener(canvas,net));
 
         buttonPanel.add(importBtn);
         buttonPanel.add(addPlaceBtn);
         buttonPanel.add(addTransitionBtn);
+        buttonPanel.add(addEdgeBtn);
+        buttonPanel.add(tokenBtn);
+        buttonPanel.add(deleteButton);
         buttonPanel.add(runBtn);
 
 

@@ -10,7 +10,7 @@ public class Transition2D extends Rectangle2D.Float implements Element {
 
     private Transition transition;
 
-    private boolean run = false;
+    private boolean runMode = false;
 
     public Transition2D(Transition transition){
         super(transition.getX(),transition.getY(),40,40);
@@ -26,7 +26,7 @@ public class Transition2D extends Rectangle2D.Float implements Element {
         graphics2D.drawString(""+transition.getName(),(int) getCenterX()-30,(int)getCenterY()+30);
 
 
-        if(run){
+        if(runMode){
             try {
                 transition.checker();
                 graphics2D.setPaint(Color.green);
@@ -44,16 +44,16 @@ public class Transition2D extends Rectangle2D.Float implements Element {
         return transition.getId();
     }
 
-    public void onRun() {
-        this.run = true;
+    public void runMode() {
+        this.runMode = true;
     }
 
-    public void onClick(float x, float y) {
-        if(this.contains(x,y))
-        run();
+    public boolean isClicked(float x, float y) {
+        return contains(x,y);
     }
 
-    private void run(){
+
+    public void run(){
         try {
             transition.run();
         }

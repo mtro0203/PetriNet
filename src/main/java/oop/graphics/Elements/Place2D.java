@@ -4,6 +4,7 @@ package oop.graphics.Elements;
 import oop.graphics.Interface.Drawable;
 import oop.graphics.Interface.Element;
 import oop.petriNet.elements.Place;
+import oop.petriNet.exceptions.ElementDoNotExistException;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -30,11 +31,16 @@ public class Place2D extends Ellipse2D.Float implements Element {
 
     }
 
-    public void onRun() {
+    public void runMode() {
 
     }
 
-    public void onClick(float x, float y) {
+    public void run() {
 
+    }
+
+
+    public boolean isClicked(float x, float y) {
+        return contains(x,y);
     }
 }

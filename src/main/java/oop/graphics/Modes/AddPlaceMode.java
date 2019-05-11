@@ -12,11 +12,8 @@ public class AddPlaceMode extends BaseMode {
         super(net,canvas);
     }
 
-
-    //TODO: dorobit generovanie ideciek
-
     public void mouseClicked(MouseEvent e) {
-        net.createPlace(26454,"",0,e.getX(),e.getY());
+        net.createPlace("",0,e.getX(),e.getY());
         net.createGraphics(canvas);
     }
 }

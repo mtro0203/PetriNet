@@ -22,7 +22,7 @@ public class RunListener extends BaseListener {
 
     private void run(){
         for (Element el :canvas.getElements()) {
-            el.onRun();
+            el.runMode();
         }
         canvas.repaint();
     }

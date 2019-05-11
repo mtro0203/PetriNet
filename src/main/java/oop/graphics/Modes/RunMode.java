@@ -13,7 +13,10 @@ public class RunMode extends BaseMode {
 
     public void mouseClicked(MouseEvent e) {
         for (Element el: canvas.getElements()) {
-            el.onClick(e.getX(),e.getY());
+            if(el.isClicked(e.getX(),e.getY())){
+                el.run();
+                break;
+            }
         }
         canvas.repaint();
     }
