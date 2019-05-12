@@ -52,6 +52,18 @@ public class Transition extends BaseElement {
 
     }
 
+    public <T extends BaseEdge> List<T> getEdges(Class<T> type){
+        List<T>  tElements = new ArrayList<T>();
+        for (BaseEdge el: edges) {
+            try {
+                tElements.add(type.cast(el));
+            }
+            catch (ClassCastException ex){
+            }
+        }
+        return tElements;
+    }
+
     public void addTransmissionEdge (BaseEdge edge){
         try {
             edgeAlreadyExist(edge.getStartElement().getId(),edge.getEndElement().getId());

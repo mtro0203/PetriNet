@@ -1,6 +1,11 @@
 package oop.petriNet.Interface;
 
 import oop.graphics.Interface.NetCanvas;
+import oop.petriNet.elements.BaseElement;
+import oop.petriNet.elements.Place;
+import oop.petriNet.elements.Transition;
+
+import java.util.List;
 
 public interface Net {
     void createGraphics(NetCanvas canvas);
@@ -18,6 +23,7 @@ public interface Net {
 
     void addToken(long id, int count);
     void removeElement(long id);
+    <T extends BaseElement> List<T> getElements(Class<T> type);
 
     void clearNet();
 }

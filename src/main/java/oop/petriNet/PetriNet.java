@@ -170,6 +170,22 @@ public class PetriNet implements Net {
     }
 
 
+    public <T extends BaseElement> List<T> getElements(Class<T> type){
+
+        List<T>  tElements = new ArrayList<T>();
+
+        for (BaseElement el: elements) {
+            try {
+                tElements.add(type.cast(el));
+            }
+            catch (ClassCastException ex){
+
+            }
+        }
+        return tElements;
+    }
+
+
     public void run (long id){
         try {
             getTransition(findElement(id)).run();
@@ -199,18 +215,11 @@ public class PetriNet implements Net {
 
     private void checkEdgeIdies(long id) throws DuplicateException {
 
-        for (BaseElement el: elements){
-            try {
-                if(getTransition(el).getEdge(id) != null)
-                    throw new DuplicateException("Objekt s id " +id + " nazvom uz existuje");
+        for (Transition tr : getElements(Transition.class)) {
+            if (tr.getEdge(id) != null) {
+                throw new DuplicateException("Objekt s id " + id + " nazvom uz existuje");
             }
-
-            catch (ClassCastException ex){
-
-            }
-
         }
-
     }
 
     private BaseElement findElement(long id) throws ElementDoNotExistException {
@@ -220,8 +229,6 @@ public class PetriNet implements Net {
         }
         throw new ElementDoNotExistException("Objekt s id " + id + " neexistuje");
     }
-
-
 
     private Transition getTransition(BaseElement baseElement) throws ClassCastException  {
             return (Transition)baseElement;
@@ -336,14 +343,8 @@ public class PetriNet implements Net {
     }
 
     private void removeEdge(Predicate<BaseEdge> predicate){
-        for (BaseElement el : elements) {
-            try {
-                getTransition(el).getEdges().removeIf(predicate);
-            }
-            catch (ClassCastException ex){
-
-            }
-
+        for (Transition tr : getElements(Transition.class)) {
+            tr.getEdges().removeIf(predicate);
         }
     }
 

@@ -8,12 +8,15 @@ import java.io.File;
 
 public class FileChooser {
 
-    private String path;
-
+    private JFileChooser fileChooser;
 
     public FileChooser(){
+        fileChooser = new JFileChooser();
+    }
+
+
+    public String getPathToSelectedFile(){
         JButton confirm = new JButton();
-        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.addChoosableFileFilter(new FileFilter() {
 
@@ -31,13 +34,25 @@ public class FileChooser {
         });
 
         if(fileChooser.showOpenDialog(confirm) == JFileChooser.APPROVE_OPTION){
-            path = fileChooser.getSelectedFile().getAbsolutePath();
+            return fileChooser.getSelectedFile().getAbsolutePath();
         }
+        return null;
     }
 
-
-    public String getPathToSelectedFile()
-    {
-        return path;
+    public String choosePathtoDirectory(){
+        JButton confirm = new JButton();
+        fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("."));
+        fileChooser.setDialogTitle("Vyberte kde chcete subor ulozit");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //
+        // disable the "All files" option.
+        //
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        //
+        if (fileChooser.showOpenDialog(confirm) == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile().getAbsolutePath();
+        }
+        return  null;
     }
 }

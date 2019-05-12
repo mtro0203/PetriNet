@@ -30,6 +30,7 @@ public class ApplicationFrame extends Frame {
         Panel buttonPanel = new Panel();
 
         ImportBtn importBtn = new ImportBtn("Import");
+        ExportBtn exportBtn = new ExportBtn("Export");
         AddPlaceBtn addPlaceBtn = new AddPlaceBtn("Add Place");
         AddTransitionBtn addTransitionBtn = new AddTransitionBtn("Add Transition");
         AddEdgeBtn addEdgeBtn = new AddEdgeBtn("Add edge");
@@ -39,6 +40,7 @@ public class ApplicationFrame extends Frame {
 
 
         importBtn.addActionListener(new ImportListener(canvas,net));
+        exportBtn.addActionListener(new ExportListener(canvas,net));
         addPlaceBtn.addActionListener(new AddPlaceListener(canvas,net));
         addTransitionBtn.addActionListener(new AddTransitionListener(canvas,net));
         addEdgeBtn.addActionListener(new AddEdgeListener(canvas,net));
@@ -47,6 +49,7 @@ public class ApplicationFrame extends Frame {
         runBtn.addActionListener(new RunListener(canvas,net));
 
         buttonPanel.add(importBtn);
+        buttonPanel.add(exportBtn);
         buttonPanel.add(addPlaceBtn);
         buttonPanel.add(addTransitionBtn);
         buttonPanel.add(addEdgeBtn);

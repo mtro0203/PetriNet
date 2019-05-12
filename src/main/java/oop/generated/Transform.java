@@ -14,7 +14,6 @@ import java.util.List;
 
 import oop.generated.Exceptions.UnableCreatePetriNetException;
 import oop.petriNet.Interface.Net;
-import oop.petriNet.PetriNet;
 
 public class Transform {
 
@@ -37,8 +36,6 @@ public class Transform {
         catch (FileNotFoundException e) {
             System.out.println("Subor nenajdeny");
         }
-
-
 
         throw new UnableCreatePetriNetException("Nebolo mozne vytvorit Petri siet");
     }

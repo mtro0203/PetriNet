@@ -28,8 +28,7 @@ public class ImportListener extends BaseListener {
     }
 
     private Net importNet(){
-        FileChooser fc = new FileChooser();
-        Transform tr = new Transform(fc.getPathToSelectedFile(),net);
+        Transform tr = new Transform(new FileChooser().getPathToSelectedFile(),net);
         try {
             return tr.xml2PetriNet();
         }
