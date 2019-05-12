@@ -9,6 +9,8 @@ import oop.petriNet.edges.BaseEdge;
 import oop.petriNet.edges.Edge;
 import oop.petriNet.edges.ResetEdge;
 import oop.petriNet.elements.*;
+
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
 
@@ -37,8 +39,8 @@ public class Export {
 
 
             marshaller.marshal(document,file);
-        } catch (Exception ignored) {
-            ignored.printStackTrace();
+        } catch (JAXBException e) {
+            System.out.println(e.getCause());
         }
     }
 
