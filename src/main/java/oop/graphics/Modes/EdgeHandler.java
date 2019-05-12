@@ -1,5 +1,6 @@
 package oop.graphics.Modes;
 
+import oop.graphics.Elements.OrientedEdge;
 import oop.graphics.Interface.Element;
 import oop.graphics.Interface.NetCanvas;
 import oop.petriNet.Interface.Net;
@@ -16,7 +17,7 @@ public abstract class EdgeHandler extends BaseMode{
     protected void edgeHandler(int x, int y){
         if (firstId == null){
             for (Element el: canvas.getElements()) {
-                if(el.isClicked(x,y)){
+                if(el.isClicked(x,y) && !(el instanceof OrientedEdge)){
                     first = el;
                     firstId = el.getId();
                     el.clicked(true);

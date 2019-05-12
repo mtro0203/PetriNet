@@ -38,7 +38,7 @@ public class OrientedEdge extends Arrow implements Element {
     }
 
     public boolean isClicked(float x, float y) {
-        return intersects(x-7,y-7,15,15);
+        return intersects(x-7,y-7,10,10);
     }
 
 
