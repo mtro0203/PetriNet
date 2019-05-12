@@ -8,32 +8,26 @@ public class Arrow extends Line2D.Float {
 
     private final int ARR_SIZE = 6;
 
-    private int x1;
-    private int y1;
-    private int x2;
-    private int y2;
 
 
     public Arrow(int x1, int y1, int x2, int y2) {
-        this.x1 = x1+20;
-        this.y1 = y1+20;
-        this.x2 = x2+20;
-        this.y2 = y2+20;
+        super(x1+20,y1+20,x2+20,y2+20);
+
 
         setPoints();
 
     }
 
-    public int getCenterX(){
-        return (x1+x2)/2;
+    public float getCenterX(){
+        return (super.x1+super.x2)/2;
     }
 
-    public int getCenterY(){
-        return (y1+y2)/2;
+    public float getCenterY(){
+        return (super.y1+super.y2)/2;
     }
 
     private void setPoints(){
-        double dx = x2 - x1, dy = y2 - y1;
+        double dx = super.x2 - super.x1, dy = super.y2 - super.y1;
 
         double angle = Math.atan2(dy, dx);
         double degrees =  Math.toDegrees(angle);
@@ -61,8 +55,8 @@ public class Arrow extends Line2D.Float {
 
     }
 
-    void moveX(int n){this.x1 +=n;}
-    void moveY(int n){this.y1 +=n;}
+    void moveX(int n){super.x1 +=n;}
+    void moveY(int n){super.y1 +=n;}
 
 
     void drawArrow(Graphics g1) {

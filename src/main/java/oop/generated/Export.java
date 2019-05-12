@@ -86,6 +86,7 @@ public class Export {
             place.setId((int)pl.getId());
             place.setX((int)pl.getX());
             place.setY((int)pl.getY());
+            place.setTokens(pl.getTokens());
             place.setLabel(pl.getName());
             document.getPlace().add(place);
         }

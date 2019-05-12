@@ -1,19 +1,15 @@
 package oop.generated;
 
-import javax.swing.*;
+import oop.generated.Exceptions.UnableCreatePetriNetException;
+import oop.petriNet.Interface.Net;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.awt.*;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.rmi.UnmarshalException;
 import java.util.List;
-
-import oop.generated.Exceptions.UnableCreatePetriNetException;
-import oop.petriNet.Interface.Net;
 
 public class Transform {
 

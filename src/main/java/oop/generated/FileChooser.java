@@ -2,7 +2,6 @@ package oop.generated;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.awt.*;
 import java.io.File;
 
 
@@ -42,15 +41,15 @@ public class FileChooser {
     public String choosePathtoDirectory(){
         JButton confirm = new JButton();
         fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("."));
+
         fileChooser.setDialogTitle("Vyberte kde chcete subor ulozit");
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         //
         // disable the "All files" option.
         //
         fileChooser.setAcceptAllFileFilterUsed(false);
         //
-        if (fileChooser.showOpenDialog(confirm) == JFileChooser.APPROVE_OPTION) {
+        if (fileChooser.showSaveDialog(confirm) == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile().getAbsolutePath();
         }
         return  null;

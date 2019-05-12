@@ -29,6 +29,6 @@ public class ChangeTokenMode extends BaseMode {
           net.addToken(element.getId(),-1);
       }
 
-      net.createGraphics(canvas);
+      canvas.repaint();
     }
 }

@@ -11,6 +11,7 @@ public class Transition2D extends Rectangle2D.Float implements Element {
     private Transition transition;
 
     private boolean runMode = false;
+    private boolean highlighted = false;
 
     public Transition2D(Transition transition){
         super(transition.getX(),transition.getY(),40,40);
@@ -25,6 +26,11 @@ public class Transition2D extends Rectangle2D.Float implements Element {
         graphics2D.draw(this);
         graphics2D.drawString(""+transition.getName(),(int) getCenterX()-30,(int)getCenterY()+30);
 
+        if(highlighted){
+            graphics2D.setPaint(Color.GREEN);
+            graphics2D.draw(this);
+            graphics2D.drawString(""+transition.getName(),(int) getCenterX()-30,(int)getCenterY()+30);
+        }
 
         if(runMode){
             try {
@@ -44,22 +50,17 @@ public class Transition2D extends Rectangle2D.Float implements Element {
         return transition.getId();
     }
 
-    public void runMode() {
-        this.runMode = true;
+    public void runMode(boolean param) {
+        this.runMode = param;
     }
 
     public boolean isClicked(float x, float y) {
         return contains(x,y);
     }
 
-
-    public void run(){
-        try {
-            transition.run();
-        }
-        catch (IllegalTransitionLaunchedException e) {
-            e.getErrorMessage();
-        }
+    @Override
+    public void clicked(boolean param) {
+            highlighted = param;
     }
 
 }

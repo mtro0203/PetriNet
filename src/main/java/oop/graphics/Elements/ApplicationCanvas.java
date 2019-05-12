@@ -44,7 +44,7 @@ public class ApplicationCanvas extends Canvas implements NetCanvas {
 
     private void addGraphicsPlace(BaseElement element){
        Place place = (Place)element;
-        elements.add(new Place2D(place));
+       elements.add(new Place2D(place));
     }
 
     public void _addMouseListener(MouseListener listener){
@@ -52,10 +52,13 @@ public class ApplicationCanvas extends Canvas implements NetCanvas {
     }
 
     public void _deleteMouseListener(){
+        for (Element el: elements){
+            el.runMode(false);
+        }
         for(MouseListener listener : getMouseListeners()){
             this.removeMouseListener(listener);
         }
-
+        repaint();
     }
     private void addGraphicsTransition(BaseElement element){
         Transition transition = (Transition)element;

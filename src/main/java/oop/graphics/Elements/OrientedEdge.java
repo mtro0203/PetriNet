@@ -37,23 +37,18 @@ public class OrientedEdge extends Arrow implements Element {
         return edge.getId();
     }
 
-    public void runMode() {
-
-    }
-
-    public void onRun() {
-
-    }
-
-    public void run() {
-
-    }
-
     public boolean isClicked(float x, float y) {
-        return contains(x,y);
+        return intersects(x-7,y-7,15,15);
     }
 
-    public void onClick(float x, float y) {
+
+    public void runMode(boolean param) {
 
     }
+
+    public void clicked(boolean param) {
+
+    }
+
+
 }

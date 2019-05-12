@@ -3,9 +3,8 @@ package oop.graphics.Interface;
 public interface Element extends Drawable {
 
      long getId();
-     void runMode();
+     void runMode(boolean param);
 
-
-     void run();
+     void clicked(boolean param);
      boolean isClicked(float x , float y);
 }

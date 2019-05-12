@@ -24,6 +24,8 @@ public interface Net {
     void addToken(long id, int count);
     void removeElement(long id);
     <T extends BaseElement> List<T> getElements(Class<T> type);
+    void setMultiplicity(long id, int multi);
+    void run (long id);
 
     void clearNet();
 }

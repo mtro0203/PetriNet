@@ -14,15 +14,15 @@ public class RunListener extends BaseListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        run();
         canvas._deleteMouseListener();
+        run();
         canvas._addMouseListener(new RunMode(net,canvas));
     }
 
 
     private void run(){
         for (Element el :canvas.getElements()) {
-            el.runMode();
+            el.runMode(true);
         }
         canvas.repaint();
     }

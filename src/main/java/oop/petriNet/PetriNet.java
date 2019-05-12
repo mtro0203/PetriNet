@@ -1,16 +1,8 @@
 package oop.petriNet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-import oop.graphics.Interface.Element;
 import oop.graphics.Interface.NetCanvas;
 import oop.petriNet.Interface.Net;
-import oop.petriNet.edges.BaseEdge;
-import oop.petriNet.edges.PlaceEdge;
-import oop.petriNet.edges.ResetEdge;
-import oop.petriNet.edges.TransitionEdge;
+import oop.petriNet.edges.*;
 import oop.petriNet.elements.BaseElement;
 import oop.petriNet.elements.Place;
 import oop.petriNet.elements.Transition;
@@ -18,6 +10,10 @@ import oop.petriNet.exceptions.DuplicateException;
 import oop.petriNet.exceptions.ElementDoNotExistException;
 import oop.petriNet.exceptions.GraphicsExeption;
 import oop.petriNet.exceptions.IllegalTransitionLaunchedException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 
 //TODO spravit funckiu na vymazanie elementu podla ?? (id), pridat ju do interfacu
@@ -158,7 +154,7 @@ public class PetriNet implements Net {
             System.out.println(ex.getMessage());
         }
         catch (ClassCastException ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Nieje mozne vytvorit takuto hranu");
         }
         catch (DuplicateException ex) {
             System.out.println(ex.getErrorMessage());
@@ -185,6 +181,25 @@ public class PetriNet implements Net {
         return tElements;
     }
 
+    public void setMultiplicity(long id, int multi){
+        for (Transition tr: getElements(Transition.class)) {
+           Edge edge_ = tr.getEdges(Edge.class).stream().filter(edge -> edge.getId() == id)
+                    .findAny()
+                    .orElse(null);
+
+            if (edge_ == null)
+                continue;
+            else {
+                try {
+                    edge_.setMultiplicity(edge_.getMultiplicity()+multi);
+                }
+
+                catch (IllegalArgumentException ex){
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+    }
 
     public void run (long id){
         try {
